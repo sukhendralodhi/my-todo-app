@@ -1,6 +1,7 @@
 const addButton = document.querySelector(".add");
 const inputEle = document.querySelector(".input");
 const containerEle = document.querySelector(".container");
+const errorEle = document.getElementById("error");
 
 class Item {
   constructor(itemName) {
@@ -50,7 +51,11 @@ class Item {
     input.disabled = !input.disabled;
   }
   remove(itemBox) {
-    containerEle.removeChild(itemBox);
+    confirm('Do you want to delete this?');
+    if(confirm == true) {
+      containerEle.removeChild(itemBox);
+    }
+    return;
   }
 }
 
@@ -59,7 +64,7 @@ function check() {
     new Item(inputEle.value);
     inputEle.value = "";
   } else {
-    alert("Please input something!");
+    errorEle.textContent = "Please input something!";
   }
 }
 
